@@ -1,0 +1,1 @@
+CREATE TABLE "tbl_html_text" ( `hash_id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, `html_text` TEXT NOT NULL, `date` TEXT NOT NULL, `domain` TEXT NOT NULL, `ad_text` TEXT )
