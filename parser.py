@@ -32,14 +32,24 @@ class Parser(object):
 
     def __init__(self):
         self.html = ""
+
         self.address = ""
         self.hash_id = 0
         self.property_type = ""
+        self.sub_type = ""
+        self.ad_id = ""
+        self.ad_url = ""
         self.postcode = ""
         self.state = ""
         self.price_text = ""
         self.open_date = ""
-        self.rooms = "-,-,-"  # bed,bath,park
+        self.room_bed = None
+        self.room_bath = None
+        self.room_car = None
+        self.create_date = ""
+        self.last_seen_date = ""
+        self.raw_ad_text = ""
+
         self._tgt_db_conn = sqlite3.connect(self.tgt_db)
         self.cur = self._tgt_db_conn.cursor()
         self.write_queue_len = 0
@@ -99,11 +109,15 @@ class Parser(object):
                         #     continue
                         self.html = rs["html_text"]
                         self.hash_id = rs['hash_id']
+                        self.create_date = rs["create_date"]
+                        self.last_seen_date = rs["last_seen_date"]
+                        self.raw_ad_text = rs["ad_text"]
 
                     else:
                         break
 
                     # call parse
+
                     self.parse_html_text()
                     self.insert_data()
             finally:
@@ -120,6 +134,30 @@ class Parser(object):
             self.property_type = article["data-content-type"]
         except (AttributeError, KeyError):
             self.property_type = ""
+
+        # get ad id
+        self.ad_id = ""
+        try:
+            self.ad_id = article["id"]
+        except (AttributeError, KeyError):
+            self.ad_id = ""
+
+        # get url
+        self.ad_url = ""
+        if self.ad_id:
+            url = article.find("a")['href']
+            assert isinstance(url, basestring)
+            while url:
+                if url[0] == "/" and url.find(self.ad_id[1:]):
+                    break
+                url = article.find("a")['href']
+            self.ad_url = "www.realestate.com.au"+url
+
+        # get subtype
+        self.sub_type = ""
+        if self.ad_url:
+            url_component = url.split("-")
+            self.sub_type = url_component[1]
 
         # get address
         photoviewer = soup.find("div", class_="photoviewer")
@@ -166,19 +204,21 @@ class Parser(object):
         #     print s.get_text(), len(article.find_all("li", class_="badge openTime"))
 
         # get rooms
-        self.rooms = "-,-,-"
+        self.room_bed = None
+        self.room_bath = None
+        self.room_car = None
         rooms = article.find("dl", class_="rui-property-features rui-clearfix")
         if rooms:
             room_text = rooms.get_text()
             # print room_text, "===>", self._parse_rooms(room_text)
-            self.rooms = self._parse_rooms(room_text)
+            self.room_bed, self.room_bath, self.room_car = self._parse_rooms(room_text)
 
     def _parse_rooms(self, room_text):
         """
         :return: [1,2,3] for [bed,bath,car]
         """
         assert isinstance(room_text, basestring)
-        rooms = ["-", "-", "-"]
+        rooms = [None, None, None]
         s = room_text.split(" ")
         while s:
             text = s.pop(0)
@@ -199,7 +239,7 @@ class Parser(object):
                     if num.isdigit():
                         s.pop(0)
                         rooms[2] = num
-        return ",".join(rooms)
+        return rooms
 
     def test_db(self):
         with sqlite3.connect(self.tgt_db) as conn:
@@ -214,14 +254,17 @@ class Parser(object):
                         `agent_name`	TEXT,
                         `agent_company`	TEXT,
                         `raw_list_text`	TEXT,
-                        `rooms`	TEXT,
+                        `room.bed`	INTEGER,
+                        `room.bath`	INTEGER,
+                        `room.car`	INTEGER,
                         `type`	TEXT,
                         `subtype`	TEXT,
                         `lat`	NUMERIC,
                         `long`	NUMERIC,
-                        `address_nomalized`	TEXT,
+                        `address_normalized`	TEXT,
                         `state`	TEXT,
-                        `postcode`	TEXT
+                        `postcode`	TEXT,
+                        `ad_url` TEXT
                     );
                     """)
             conn.commit()
@@ -230,21 +273,32 @@ class Parser(object):
         cur = self.cur
 
         try:
-            cur.execute("INSERT INTO tbl_property_ad (hash_id, address, type, state, postcode, price_text, rooms) "
-                        "VALUES (?, ?, ?, ?, ?, ?, ?)",
-                        (self.hash_id, self.address, self.property_type, self.state, self.postcode, self.price_text,
-                         self.rooms))
+            cur.execute("INSERT INTO tbl_property_ad "
+                        "(hash_id, address, type, subtype,"
+                        " state, postcode, price_text, "
+                        "`room.bed`, `room.bath`, `room.car`, "
+                        "`raw_list_text`, `ad_url`,"
+                        " `created_date`, `last_seen_date`) "
+                        "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                        (self.hash_id, self.address, self.property_type, self.sub_type,
+                         self.state, self.postcode, self.price_text,
+                         self.room_bed, self.room_bath, self.room_car,
+                         self.raw_ad_text, self.ad_url,
+                         self.create_date, self.last_seen_date))
         except sqlite3.IntegrityError:
-            cur.execute("UPDATE tbl_property_ad SET address = ?, "
-                        "type = ?, "
-                        "state = ?, "
-                        "postcode =?, "
-                        "hash_id = ?, "
-                        "price_text = ?, "
-                        "rooms = ? "
+            cur.execute("UPDATE tbl_property_ad SET "
+                        "address = ?, type = ?, subtype =?, "
+                        "state = ?, postcode =?, price_text = ?, "
+                        "`room.bed` = ?, `room.bath` = ?, `room.car` = ?, "
+                        "`raw_list_text`=?, `ad_url`=?, "
+                        "`created_date`=?, `last_seen_date`=? "
                         "WHERE hash_id = ?",
-                        (self.address, self.property_type, self.state, self.postcode, self.hash_id, self.price_text,
-                         self.rooms, self.hash_id))
+                        (self.address, self.property_type, self.sub_type,
+                         self.state, self.postcode, self.price_text,
+                         self.room_bed, self.room_bath, self.room_car,
+                         self.raw_ad_text, self.ad_url,
+                         self.create_date, self.last_seen_date,
+                         self.hash_id))
         self.write_queue_len += 1
 
         if self.write_queue_len > 5000:
@@ -261,7 +315,7 @@ if __name__ == "__main__":
     # parser.scr_db = "./test/scraper_dumps.db"
     # parser.tgt_db = "./test/database.db"
     parser.test_db()
-    parser.extract_html_text(10000)
+    parser.extract_html_text(10000000)
 
 
 

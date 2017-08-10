@@ -140,7 +140,7 @@ def update_lat(max_row):
             # update back to tbl_property_ad
             with sqlite3.connect(db) as conn:
                 cur = conn.cursor()
-                cur.execute("UPDATE tbl_property_ad SET lat = ?, long = ?, address_nomalized = ?"
+                cur.execute("UPDATE tbl_property_ad SET lat = ?, long = ?, address_normalized = ?"
                             " WHERE id = ?",
                             (lat_, lng_, address_text, property_id))
                 conn.commit()
