@@ -1,5 +1,11 @@
-import sqlite3
 import re
+
+
+value_range = (100000, 100000000)  # price range from $ 100 K ~ $ 10 Mil
+
+pattern = re.compile(r"(?<=\$)[\s\d,]+\.?\d+\s*(?:mil|m(?=\W)|m$|k(?=\W)|k$)?|"
+                     r"\d+[\d\s,]+000\s*(?:mil|m(?=\W)|m$|k(?=\W)|k$)?|"
+                     r"\d+[\d\s,]+\.?[\d\s]*(?:mil|m(?=\W)|m$|k(?=\W)|k$)", re.IGNORECASE)
 
 
 def extract_num(text):
@@ -7,65 +13,81 @@ def extract_num(text):
     for c in text:
         if c.isdigit() or c == ".":
             t += c
+    ts = t.split(".")
+    if len(ts) > 2:
+        t = ".".join(ts[:2])
     if t:
         return float(t)
     else:
-        return None
+        return 0.0
 
 
-def rt(price_text):
+def get_single_price_value(single_price_text):
+    assert isinstance(single_price_text, basestring)
+    t = single_price_text.lower()
+    val = extract_num(t)
+    if val:
+        if "k" in t:
+            val *= 1000
+        elif "m" in t:
+            val *= 1000000
+    return val
+
+
+def parse_price_text(price_text):
+    """
+    
+    :param price_text: 
+    :return: price value in float, or scenario in string,
+    """
     assert isinstance(price_text, basestring)
-    pattern = re.compile(r"\$\s?[\s\d,]+\.?[\s\d,]*|[\d,]+000")
     match = pattern.findall(price_text)
     # cat 0: no digit at all
     if not match:
         # if any(i.isdigit() for i in price_text):
         #     print "cat 0:", price_text
-        pass
+        return "No Match."
     # cat 1: single number
     elif len(match) == 1:
-        # cat 1.1 per 1$
-        # cat 1.2 per 1K$
-        pattern1_1 = re.compile(r"(\$\s?[\s\d,]+\.?[\s\d,]*|[\d,]+000)\s?[Kk]")
-        match1_1 = pattern1_1.search(price_text)
-        # cat 1.3 per 1M$
-        pattern1_2 = re.compile(r"(\$\s?[\s\d,]+\.?[\s\d,]*|[\d,]+000)\s?[mM]")
-        match1_2 = pattern1_2.search(price_text)
-
-        if match1_1:  # k
-            price = extract_num(match1_1.group(0))
-            if price:
-                if 100000.0 > price > 100:
-                    price = price*1000
-        elif match1_2:  # million
-            price = extract_num(match1_2.group(0))
-            if price:
-                if 100.0 > price > 0.1:
-                    price = price*1000000
+        value = get_single_price_value(match[0])
+        if value:
+            if value_range[0] <= int(value) <= value_range[1]:
+                return value
+            else:
+                return "Single Match, but value not in range."
         else:
-            price = extract_num(match[0])
-            pass
+            return "Single match, but none value."
 
     # cat 2: two numbers
     elif len(match) == 2:
-        price1 = extract_num(match[0])
-        if price1 < 10000:
-            print "cat 2:", price_text, price1
-
-        pass
+        value1 = get_single_price_value(match[0])
+        value2 = get_single_price_value(match[1])
+        if value_range[0] <= int(value1) <= value_range[1]:
+            if value_range[0] <= int(value2) <= value_range[1]:
+                return (value1+value2)/2
+            else:
+                return value1
+        elif value_range[0] <= int(value2) <= value_range[1]:
+            return value2
+        else:
+            return "Match two, but value not in range."
     else:
-        print "mismatch:", price_text
-
-    pass
+        return "Multiple Match."
 
 
-with sqlite3.connect("./data/database.db") as conn:
-    cur = conn.cursor()
-    cur.execute("select price_text from tbl_property_ad  limit 10000 ")
-    rs = cur.fetchall()
+if __name__ == "__main__":
+    import sqlite3
+    with sqlite3.connect("./data/database.db") as conn:
+        cur = conn.cursor()
+        cur.execute("select price_text from tbl_property_ad  limit 10000 ")
+        line = cur.fetchone()
 
-for line in rs:
-    price_text = line[0]
-    rt(price_text)
-pass
+        while line:
+            price_text = line[0]
+            price = rt(price_text)
+            if not isinstance(price, float):
+                if "No Match" not in price:
+                    print price, price_text
+            line = cur.fetchone()
+        pass
 
