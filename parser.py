@@ -181,6 +181,8 @@ class Parser(object):
         if price_text:
             self.price_text = price_text.get_text()
             self.price = parse_price_text(self.price_text)
+            if not isinstance(self.price, float):
+                self.price = None
 
         # todo li, class='badge openTime'
         # s = article.find("li", class_="badge openTime")
