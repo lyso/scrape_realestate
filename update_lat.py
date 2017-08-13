@@ -63,41 +63,33 @@ def saved_address_num(address_text):
 
 
 def update_lat(max_row):
+
+    max_query_number = 2500
+    with sqlite3.connect(db) as conn:
+        cur = conn.cursor()
+        cur.execute("SELECT count(*) FROM tbl_address_lat WHERE create_date > date('now')")
+        today_query_number = cur.fetchone()[0]
+
     with sqlite3.connect(db) as conn:
         cur = conn.cursor()
         cur.execute("SELECT address, id, state, postcode FROM tbl_property_ad "
                     "WHERE lat is NULL and state = 'NSW' AND type = 'residential' LIMIT ?",
                     (max_row,))
         rs = cur.fetchall()
+        it = iter(rs)
+        property_ = it.next()
+        retry_num = 0
+        while property_:
+            try:
+                address_text = property_[0]
+                property_id = property_[1]
+                state = property_[2]
+                postcode = property_[3]
+                normalized_address = ""
+                lat_ = None
+                lng_ = None
 
-    max_query_number = 2500
-    with sqlite3.connect(db) as conn:
-        cur = conn.cursor()
-        cur.execute("SELECT count(*) FROM tbl_address_lat WHERE SUBSTR(create_date,1,10) = ?", (today,))
-        today_query_number = cur.fetchone()[0]
-
-    for property_ in rs:
-        address_text = property_[0]
-        property_id = property_[1]
-        state = property_[2]
-        postcode = property_[3]
-        normalized_address = ""
-        lat_ = None
-        lng_ = None
-
-        if address_text:
-            dict_geo = saved_address_num(address_text)
-            if isinstance(dict_geo, dict):
-                try:
-                    lat_ = dict_geo['geometry']['location']['lat']
-                    lng_ = dict_geo['geometry']['location']['lng']
-                except KeyError:
-                    lat_ = None
-                    lng_ = None
-
-                    # set saved address to suburb
-                    address_text = state + " " + str(postcode)
-                    normalized_address = address_text
+                if address_text:
                     dict_geo = saved_address_num(address_text)
                     if isinstance(dict_geo, dict):
                         try:
@@ -107,43 +99,67 @@ def update_lat(max_row):
                             lat_ = None
                             lng_ = None
 
-            if not lat_:
-                # if not found in db, go for geopy
-                if today_query_number < max_query_number:
-                    geo = GoogleV3(api_key="AIzaSyALRQvXf8IwBIU6HI8btqv4TtSMarfm-98", timeout=20)
-                    location = geo.geocode(address_text)
-                    time.sleep(0.1)
-                    today_query_number += 1
-                    now_ = str(datetime.now())
-                    print "Geocode quotation:", today_query_number, ":", address_text
+                            # set saved address to suburb
+                            address_text = state + " " + str(postcode)
+                            normalized_address = address_text
+                            dict_geo = saved_address_num(address_text)
+                            if isinstance(dict_geo, dict):
+                                try:
+                                    lat_ = dict_geo['geometry']['location']['lat']
+                                    lng_ = dict_geo['geometry']['location']['lng']
+                                except KeyError:
+                                    lat_ = None
+                                    lng_ = None
 
-                    if location:
-                        lat_ = location.latitude
-                        lng_ = location.longitude
-                        if not normalized_address:
-                            normalized_address = location.address
-                        cur.execute("INSERT INTO tbl_address_lat (address_text, lat, long, api_string, create_date) "
-                                    "VALUES (?, ?, ?, ?, ?)",
-                                    (address_text, lat_, lng_, json.dumps(location.raw), now_))
-                        conn.commit()
-                    else:
-                        cur.execute("INSERT INTO tbl_address_lat (address_text, lat, long, api_string, create_date) "
-                                    "VALUES (?, ?, ?, ?, ?)",
-                                    (address_text, None, None, None, now_))
-                        conn.commit()
-                        lat_ = 0
-                        lng_ = 0
+                    if not lat_:
+                        # if not found in db, go for geopy
+                        if today_query_number < max_query_number:
+                            geo = GoogleV3(api_key="AIzaSyALRQvXf8IwBIU6HI8btqv4TtSMarfm-98", timeout=20)
+                            location = geo.geocode(address_text)
+                            time.sleep(0.1)
+                            today_query_number += 1
+                            now_ = str(datetime.now())
+                            print "Geocode quotation:", today_query_number, ":", address_text
 
-                else:
+                            if location:
+                                lat_ = location.latitude
+                                lng_ = location.longitude
+                                if not normalized_address:
+                                    normalized_address = location.address
+                                cur.execute("INSERT INTO tbl_address_lat (address_text, lat, long, api_string, create_date) "
+                                            "VALUES (?, ?, ?, ?, ?)",
+                                            (address_text, lat_, lng_, json.dumps(location.raw), now_))
+                                conn.commit()
+                            else:
+                                cur.execute("INSERT INTO tbl_address_lat (address_text, lat, long, api_string, create_date) "
+                                            "VALUES (?, ?, ?, ?, ?)",
+                                            (address_text, None, None, None, now_))
+                                conn.commit()
+                                lat_ = 0
+                                lng_ = 0
+
+                        else:
+                            break
+
+                    # update back to tbl_property_ad
+                    with sqlite3.connect(db) as conn:
+                        cur = conn.cursor()
+                        cur.execute("UPDATE tbl_property_ad SET lat = ?, long = ?, address_normalized = ?"
+                                    " WHERE id = ?",
+                                    (lat_, lng_, address_text, property_id))
+                        conn.commit()
+            except Exception as err:
+                print err
+                retry_num += 1
+                if retry_num > 5:
+                    input("Enter to resume:")
                     break
+                time.sleep(5)
+            else:
+                property_ = it.next()
+                retry_num = 0
 
-            # update back to tbl_property_ad
-            with sqlite3.connect(db) as conn:
-                cur = conn.cursor()
-                cur.execute("UPDATE tbl_property_ad SET lat = ?, long = ?, address_normalized = ?"
-                            " WHERE id = ?",
-                            (lat_, lng_, address_text, property_id))
-                conn.commit()
+
 
 
 if __name__ == "__main__":
