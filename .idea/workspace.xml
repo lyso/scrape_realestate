@@ -4,6 +4,7 @@
     <list default="true" id="be68bead-a92a-4c81-b5cd-2d46c40fa740" name="Default" comment="">
       <change type="DELETED" beforePath="$PROJECT_DIR$/readme.txt" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/parser.py" afterPath="$PROJECT_DIR$/parser.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/price_parser.py" afterPath="$PROJECT_DIR$/price_parser.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/test_update_lat.py" afterPath="$PROJECT_DIR$/test/test_update_lat.py" />
     </list>
@@ -21,7 +22,7 @@
     <SUITE FILE_PATH="coverage/Scrape_house$scraper.coverage" NAME="scraper Coverage Results" MODIFIED="1500784676002" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Scrape_house$parser.coverage" NAME="parser Coverage Results" MODIFIED="1502285743897" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Scrape_house$app.coverage" NAME="app Coverage Results" MODIFIED="1499943905244" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/Scrape_house$test_update_lat.coverage" NAME="test_update_lat Coverage Results" MODIFIED="1502626396225" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/" />
+    <SUITE FILE_PATH="coverage/Scrape_house$test_update_lat.coverage" NAME="test_update_lat Coverage Results" MODIFIED="1502626781796" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/" />
     <SUITE FILE_PATH="coverage/Scrape_house$Nosetests_in_test_class_property_py.coverage" NAME="Nosetests in test_class_property.py Coverage Results" MODIFIED="1500164928358" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Scrape_house$Nosetests_for_test_parser_test_ad_type.coverage" NAME="Nosetests for test_parser.test_ad_type Coverage Results" MODIFIED="1500210294515" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Scrape_house$update_lat.coverage" NAME="update_lat Coverage Results" MODIFIED="1501998713524" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
@@ -101,6 +102,26 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="parser.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/parser.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="7728">
+              <caret line="276" column="57" lean-forward="true" selection-start-line="276" selection-start-column="57" selection-end-line="276" selection-end-column="57" />
+              <folding>
+                <element signature="e#0#14#0" expanded="true" />
+                <marker date="1502627216110" expanded="true" signature="1718:1753" ph="SELECT hash_... tbl_property_ad" />
+                <marker date="1502627216110" expanded="true" signature="2093:2128" ph="SELECT * FRO... tbl_html_text" />
+                <marker date="1502627216110" expanded="true" signature="7278:8194" ph="CREATE TABLE... IF" />
+                <marker date="1502627216110" expanded="true" signature="8337:8481" ph="INSERT INTO tbl_property_ad... " />
+                <marker date="1502627216110" expanded="true" signature="8337:8482" ph="INSERT INTO tbl_property_ad... " />
+                <marker date="1502627216110" expanded="true" signature="8337:8747" ph="INSERT INTO tbl_property_ad... " />
+                <marker date="1502627216110" expanded="true" signature="9175:9415" ph="UPDATE tbl_p... " />
+                <marker date="1502627216110" expanded="true" signature="9175:9582" ph="UPDATE tbl_p... " />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="test_parser.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test_parser.py">
           <provider selected="true" editor-type-id="text-editor">
@@ -115,39 +136,25 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="test_scraper.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test_scraper.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="338">
-              <caret line="25" column="18" lean-forward="false" selection-start-line="25" selection-start-column="18" selection-end-line="25" selection-end-column="18" />
-              <folding>
-                <marker date="1500552972526" expanded="true" signature="306:340" ph="DROP TABLE i... " />
-                <marker date="1500552972526" expanded="true" signature="687:741" ph="SELECT hash_... tbl_html_text" />
-                <marker date="1500552972526" expanded="true" signature="950:1002" ph="UPDATE tbl_h... " />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="test_update_lat.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test/test_update_lat.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="494">
-              <caret line="60" column="24" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="93" selection-end-column="0" />
+            <state relative-caret-position="186">
+              <caret line="75" column="0" lean-forward="true" selection-start-line="75" selection-start-column="0" selection-end-line="75" selection-end-column="0" />
               <folding>
-                <marker date="1502626618808" expanded="true" signature="2325:2376" ph="select price... tbl_property_ad" />
+                <marker date="1502626781781" expanded="true" signature="2325:2376" ph="select price... tbl_property_ad" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="price_parser.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="price_parser.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/price_parser.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="130">
-              <caret line="70" column="13" lean-forward="true" selection-start-line="70" selection-start-column="13" selection-end-line="70" selection-end-column="13" />
+            <state relative-caret-position="186">
+              <caret line="76" column="26" lean-forward="true" selection-start-line="76" selection-start-column="26" selection-end-line="76" selection-end-column="26" />
               <folding>
-                <marker date="1502626639947" expanded="true" signature="2325:2376" ph="select price... tbl_property_ad" />
+                <marker date="1502626909515" expanded="true" signature="2325:2376" ph="select price... tbl_property_ad" />
               </folding>
             </state>
           </provider>
@@ -173,6 +180,7 @@
       <find>eva</find>
       <find>price_text</find>
       <find>nom</find>
+      <find>price</find>
     </findStrings>
     <replaceStrings>
       <replace>property_.data</replace>
@@ -196,9 +204,9 @@
         <option value="$PROJECT_DIR$/scraper.py" />
         <option value="$APPLICATION_CONFIG_DIR$/scratches/scratch.py" />
         <option value="$PROJECT_DIR$/update_lat.py" />
-        <option value="$PROJECT_DIR$/parser.py" />
         <option value="$PROJECT_DIR$/test/test_update_lat.py" />
         <option value="$PROJECT_DIR$/price_parser.py" />
+        <option value="$PROJECT_DIR$/parser.py" />
       </list>
     </option>
   </component>
@@ -209,10 +217,9 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-9" />
-    <option name="y" value="-9" />
-    <option name="width" value="2578" />
-    <option name="height" value="1408" />
+    <option name="x" value="-8" />
+    <option name="width" value="1893" />
+    <option name="height" value="1398" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -601,7 +608,14 @@
       <option name="project" value="LOCAL" />
       <updated>1502286278782</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="new price parser by regex">
+      <created>1502626712836</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1502626712836</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -646,17 +660,17 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-9" y="-9" width="2578" height="1408" extended-state="6" />
+    <frame x="-8" y="0" width="1893" height="1398" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.08153477" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.123114064" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32983872" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297362" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32956383" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27948305" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.273021" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25219825" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2752443" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22949918" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32983872" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39983845" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -699,7 +713,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Parser include fields: sub_type, ad_id*, ad_url*, room_bed*, room_bath*, room_car*, create_date, raw_ad_text* (* for db new)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Parser include fields: sub_type, ad_id*, ad_url*, room_bed*, room_bath*, room_car*, create_date, raw_ad_text* (* for db new)" />
+    <MESSAGE value="new price parser by regex" />
+    <option name="LAST_COMMIT_MESSAGE" value="new price parser by regex" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -730,15 +745,14 @@
           <caret line="67" column="33" lean-forward="false" selection-start-line="67" selection-start-column="33" selection-end-line="67" selection-end-column="33" />
           <folding>
             <element signature="e#0#14#0" expanded="true" />
-            <element signature="e#1358#1662#0" expanded="false" />
-            <marker date="1502317256034" expanded="true" signature="2094:2129" ph="SELECT hash_... tbl_property_ad" />
-            <marker date="1502317256034" expanded="true" signature="2469:2504" ph="SELECT * FRO... tbl_html_text" />
-            <marker date="1502317256034" expanded="true" signature="7605:8521" ph="CREATE TABLE... IF" />
-            <marker date="1502317256034" expanded="true" signature="8664:8808" ph="INSERT INTO tbl_property_ad... " />
-            <marker date="1502317256034" expanded="true" signature="8664:8809" ph="INSERT INTO tbl_property_ad... " />
-            <marker date="1502317256034" expanded="true" signature="8664:9064" ph="INSERT INTO tbl_property_ad... " />
-            <marker date="1502317256034" expanded="true" signature="9480:9711" ph="UPDATE tbl_p... " />
-            <marker date="1502317256034" expanded="true" signature="9480:9878" ph="UPDATE tbl_p... " />
+            <marker date="1502627216110" expanded="true" signature="1718:1753" ph="SELECT hash_... tbl_property_ad" />
+            <marker date="1502627216110" expanded="true" signature="2093:2128" ph="SELECT * FRO... tbl_html_text" />
+            <marker date="1502627216110" expanded="true" signature="7278:8194" ph="CREATE TABLE... IF" />
+            <marker date="1502627216110" expanded="true" signature="8337:8481" ph="INSERT INTO tbl_property_ad... " />
+            <marker date="1502627216110" expanded="true" signature="8337:8482" ph="INSERT INTO tbl_property_ad... " />
+            <marker date="1502627216110" expanded="true" signature="8337:8747" ph="INSERT INTO tbl_property_ad... " />
+            <marker date="1502627216110" expanded="true" signature="9175:9415" ph="UPDATE tbl_p... " />
+            <marker date="1502627216110" expanded="true" signature="9175:9582" ph="UPDATE tbl_p... " />
           </folding>
         </state>
       </provider>
@@ -784,15 +798,14 @@
           <caret line="67" column="33" lean-forward="false" selection-start-line="67" selection-start-column="33" selection-end-line="67" selection-end-column="33" />
           <folding>
             <element signature="e#0#14#0" expanded="true" />
-            <element signature="e#1358#1662#0" expanded="false" />
-            <marker date="1502317256034" expanded="true" signature="2094:2129" ph="SELECT hash_... tbl_property_ad" />
-            <marker date="1502317256034" expanded="true" signature="2469:2504" ph="SELECT * FRO... tbl_html_text" />
-            <marker date="1502317256034" expanded="true" signature="7605:8521" ph="CREATE TABLE... IF" />
-            <marker date="1502317256034" expanded="true" signature="8664:8808" ph="INSERT INTO tbl_property_ad... " />
-            <marker date="1502317256034" expanded="true" signature="8664:8809" ph="INSERT INTO tbl_property_ad... " />
-            <marker date="1502317256034" expanded="true" signature="8664:9064" ph="INSERT INTO tbl_property_ad... " />
-            <marker date="1502317256034" expanded="true" signature="9480:9711" ph="UPDATE tbl_p... " />
-            <marker date="1502317256034" expanded="true" signature="9480:9878" ph="UPDATE tbl_p... " />
+            <marker date="1502627216110" expanded="true" signature="1718:1753" ph="SELECT hash_... tbl_property_ad" />
+            <marker date="1502627216110" expanded="true" signature="2093:2128" ph="SELECT * FRO... tbl_html_text" />
+            <marker date="1502627216110" expanded="true" signature="7278:8194" ph="CREATE TABLE... IF" />
+            <marker date="1502627216110" expanded="true" signature="8337:8481" ph="INSERT INTO tbl_property_ad... " />
+            <marker date="1502627216110" expanded="true" signature="8337:8482" ph="INSERT INTO tbl_property_ad... " />
+            <marker date="1502627216110" expanded="true" signature="8337:8747" ph="INSERT INTO tbl_property_ad... " />
+            <marker date="1502627216110" expanded="true" signature="9175:9415" ph="UPDATE tbl_p... " />
+            <marker date="1502627216110" expanded="true" signature="9175:9582" ph="UPDATE tbl_p... " />
           </folding>
         </state>
       </provider>
@@ -838,15 +851,14 @@
           <caret line="148" column="0" lean-forward="false" selection-start-line="148" selection-start-column="0" selection-end-line="148" selection-end-column="0" />
           <folding>
             <element signature="e#0#14#0" expanded="true" />
-            <element signature="e#1358#1662#0" expanded="false" />
-            <marker date="1502317256034" expanded="true" signature="2094:2129" ph="SELECT hash_... tbl_property_ad" />
-            <marker date="1502317256034" expanded="true" signature="2469:2504" ph="SELECT * FRO... tbl_html_text" />
-            <marker date="1502317256034" expanded="true" signature="7605:8521" ph="CREATE TABLE... IF" />
-            <marker date="1502317256034" expanded="true" signature="8664:8808" ph="INSERT INTO tbl_property_ad... " />
-            <marker date="1502317256034" expanded="true" signature="8664:8809" ph="INSERT INTO tbl_property_ad... " />
-            <marker date="1502317256034" expanded="true" signature="8664:9064" ph="INSERT INTO tbl_property_ad... " />
-            <marker date="1502317256034" expanded="true" signature="9480:9711" ph="UPDATE tbl_p... " />
-            <marker date="1502317256034" expanded="true" signature="9480:9878" ph="UPDATE tbl_p... " />
+            <marker date="1502627216110" expanded="true" signature="1718:1753" ph="SELECT hash_... tbl_property_ad" />
+            <marker date="1502627216110" expanded="true" signature="2093:2128" ph="SELECT * FRO... tbl_html_text" />
+            <marker date="1502627216110" expanded="true" signature="7278:8194" ph="CREATE TABLE... IF" />
+            <marker date="1502627216110" expanded="true" signature="8337:8481" ph="INSERT INTO tbl_property_ad... " />
+            <marker date="1502627216110" expanded="true" signature="8337:8482" ph="INSERT INTO tbl_property_ad... " />
+            <marker date="1502627216110" expanded="true" signature="8337:8747" ph="INSERT INTO tbl_property_ad... " />
+            <marker date="1502627216110" expanded="true" signature="9175:9415" ph="UPDATE tbl_p... " />
+            <marker date="1502627216110" expanded="true" signature="9175:9582" ph="UPDATE tbl_p... " />
           </folding>
         </state>
       </provider>
@@ -899,15 +911,14 @@
           <caret line="148" column="0" lean-forward="true" selection-start-line="148" selection-start-column="0" selection-end-line="148" selection-end-column="0" />
           <folding>
             <element signature="e#0#14#0" expanded="true" />
-            <element signature="e#1358#1662#0" expanded="false" />
-            <marker date="1502317256034" expanded="true" signature="2094:2129" ph="SELECT hash_... tbl_property_ad" />
-            <marker date="1502317256034" expanded="true" signature="2469:2504" ph="SELECT * FRO... tbl_html_text" />
-            <marker date="1502317256034" expanded="true" signature="7605:8521" ph="CREATE TABLE... IF" />
-            <marker date="1502317256034" expanded="true" signature="8664:8808" ph="INSERT INTO tbl_property_ad... " />
-            <marker date="1502317256034" expanded="true" signature="8664:8809" ph="INSERT INTO tbl_property_ad... " />
-            <marker date="1502317256034" expanded="true" signature="8664:9064" ph="INSERT INTO tbl_property_ad... " />
-            <marker date="1502317256034" expanded="true" signature="9480:9711" ph="UPDATE tbl_p... " />
-            <marker date="1502317256034" expanded="true" signature="9480:9878" ph="UPDATE tbl_p... " />
+            <marker date="1502627216110" expanded="true" signature="1718:1753" ph="SELECT hash_... tbl_property_ad" />
+            <marker date="1502627216110" expanded="true" signature="2093:2128" ph="SELECT * FRO... tbl_html_text" />
+            <marker date="1502627216110" expanded="true" signature="7278:8194" ph="CREATE TABLE... IF" />
+            <marker date="1502627216110" expanded="true" signature="8337:8481" ph="INSERT INTO tbl_property_ad... " />
+            <marker date="1502627216110" expanded="true" signature="8337:8482" ph="INSERT INTO tbl_property_ad... " />
+            <marker date="1502627216110" expanded="true" signature="8337:8747" ph="INSERT INTO tbl_property_ad... " />
+            <marker date="1502627216110" expanded="true" signature="9175:9415" ph="UPDATE tbl_p... " />
+            <marker date="1502627216110" expanded="true" signature="9175:9582" ph="UPDATE tbl_p... " />
           </folding>
         </state>
       </provider>
@@ -960,15 +971,14 @@
           <caret line="10" column="12" lean-forward="true" selection-start-line="10" selection-start-column="12" selection-end-line="10" selection-end-column="33" />
           <folding>
             <element signature="e#0#14#0" expanded="true" />
-            <element signature="e#1358#1662#0" expanded="false" />
-            <marker date="1502317256034" expanded="true" signature="2094:2129" ph="SELECT hash_... tbl_property_ad" />
-            <marker date="1502317256034" expanded="true" signature="2469:2504" ph="SELECT * FRO... tbl_html_text" />
-            <marker date="1502317256034" expanded="true" signature="7605:8521" ph="CREATE TABLE... IF" />
-            <marker date="1502317256034" expanded="true" signature="8664:8808" ph="INSERT INTO tbl_property_ad... " />
-            <marker date="1502317256034" expanded="true" signature="8664:8809" ph="INSERT INTO tbl_property_ad... " />
-            <marker date="1502317256034" expanded="true" signature="8664:9064" ph="INSERT INTO tbl_property_ad... " />
-            <marker date="1502317256034" expanded="true" signature="9480:9711" ph="UPDATE tbl_p... " />
-            <marker date="1502317256034" expanded="true" signature="9480:9878" ph="UPDATE tbl_p... " />
+            <marker date="1502627216110" expanded="true" signature="1718:1753" ph="SELECT hash_... tbl_property_ad" />
+            <marker date="1502627216110" expanded="true" signature="2093:2128" ph="SELECT * FRO... tbl_html_text" />
+            <marker date="1502627216110" expanded="true" signature="7278:8194" ph="CREATE TABLE... IF" />
+            <marker date="1502627216110" expanded="true" signature="8337:8481" ph="INSERT INTO tbl_property_ad... " />
+            <marker date="1502627216110" expanded="true" signature="8337:8482" ph="INSERT INTO tbl_property_ad... " />
+            <marker date="1502627216110" expanded="true" signature="8337:8747" ph="INSERT INTO tbl_property_ad... " />
+            <marker date="1502627216110" expanded="true" signature="9175:9415" ph="UPDATE tbl_p... " />
+            <marker date="1502627216110" expanded="true" signature="9175:9582" ph="UPDATE tbl_p... " />
           </folding>
         </state>
       </provider>
@@ -1021,15 +1031,14 @@
           <caret line="0" column="14" lean-forward="false" selection-start-line="0" selection-start-column="14" selection-end-line="0" selection-end-column="14" />
           <folding>
             <element signature="e#0#14#0" expanded="true" />
-            <element signature="e#1358#1662#0" expanded="false" />
-            <marker date="1502317256034" expanded="true" signature="2094:2129" ph="SELECT hash_... tbl_property_ad" />
-            <marker date="1502317256034" expanded="true" signature="2469:2504" ph="SELECT * FRO... tbl_html_text" />
-            <marker date="1502317256034" expanded="true" signature="7605:8521" ph="CREATE TABLE... IF" />
-            <marker date="1502317256034" expanded="true" signature="8664:8808" ph="INSERT INTO tbl_property_ad... " />
-            <marker date="1502317256034" expanded="true" signature="8664:8809" ph="INSERT INTO tbl_property_ad... " />
-            <marker date="1502317256034" expanded="true" signature="8664:9064" ph="INSERT INTO tbl_property_ad... " />
-            <marker date="1502317256034" expanded="true" signature="9480:9711" ph="UPDATE tbl_p... " />
-            <marker date="1502317256034" expanded="true" signature="9480:9878" ph="UPDATE tbl_p... " />
+            <marker date="1502627216110" expanded="true" signature="1718:1753" ph="SELECT hash_... tbl_property_ad" />
+            <marker date="1502627216110" expanded="true" signature="2093:2128" ph="SELECT * FRO... tbl_html_text" />
+            <marker date="1502627216110" expanded="true" signature="7278:8194" ph="CREATE TABLE... IF" />
+            <marker date="1502627216110" expanded="true" signature="8337:8481" ph="INSERT INTO tbl_property_ad... " />
+            <marker date="1502627216110" expanded="true" signature="8337:8482" ph="INSERT INTO tbl_property_ad... " />
+            <marker date="1502627216110" expanded="true" signature="8337:8747" ph="INSERT INTO tbl_property_ad... " />
+            <marker date="1502627216110" expanded="true" signature="9175:9415" ph="UPDATE tbl_p... " />
+            <marker date="1502627216110" expanded="true" signature="9175:9582" ph="UPDATE tbl_p... " />
           </folding>
         </state>
       </provider>
@@ -1082,15 +1091,14 @@
           <caret line="43" column="0" lean-forward="false" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
           <folding>
             <element signature="e#0#14#0" expanded="true" />
-            <element signature="e#1358#1662#0" expanded="false" />
-            <marker date="1502317256034" expanded="true" signature="2094:2129" ph="SELECT hash_... tbl_property_ad" />
-            <marker date="1502317256034" expanded="true" signature="2469:2504" ph="SELECT * FRO... tbl_html_text" />
-            <marker date="1502317256034" expanded="true" signature="7605:8521" ph="CREATE TABLE... IF" />
-            <marker date="1502317256034" expanded="true" signature="8664:8808" ph="INSERT INTO tbl_property_ad... " />
-            <marker date="1502317256034" expanded="true" signature="8664:8809" ph="INSERT INTO tbl_property_ad... " />
-            <marker date="1502317256034" expanded="true" signature="8664:9064" ph="INSERT INTO tbl_property_ad... " />
-            <marker date="1502317256034" expanded="true" signature="9480:9711" ph="UPDATE tbl_p... " />
-            <marker date="1502317256034" expanded="true" signature="9480:9878" ph="UPDATE tbl_p... " />
+            <marker date="1502627216110" expanded="true" signature="1718:1753" ph="SELECT hash_... tbl_property_ad" />
+            <marker date="1502627216110" expanded="true" signature="2093:2128" ph="SELECT * FRO... tbl_html_text" />
+            <marker date="1502627216110" expanded="true" signature="7278:8194" ph="CREATE TABLE... IF" />
+            <marker date="1502627216110" expanded="true" signature="8337:8481" ph="INSERT INTO tbl_property_ad... " />
+            <marker date="1502627216110" expanded="true" signature="8337:8482" ph="INSERT INTO tbl_property_ad... " />
+            <marker date="1502627216110" expanded="true" signature="8337:8747" ph="INSERT INTO tbl_property_ad... " />
+            <marker date="1502627216110" expanded="true" signature="9175:9415" ph="UPDATE tbl_p... " />
+            <marker date="1502627216110" expanded="true" signature="9175:9582" ph="UPDATE tbl_p... " />
           </folding>
         </state>
       </provider>
@@ -1149,46 +1157,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scraper.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="28">
-          <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-          <folding>
-            <element signature="e#16#31#0" expanded="true" />
-            <element signature="e#582#1104#0" expanded="false" />
-            <element signature="e#1147#1204#0" expanded="false" />
-            <marker date="1501997884413" expanded="true" signature="678:1076" ph="create table... tbl_html_text" />
-            <marker date="1501997884413" expanded="true" signature="1446:1497" ph="SELECT hash_... tbl_html_text" />
-            <marker date="1501997884413" expanded="true" signature="1633:1694" ph="UPDATE tbl_h... " />
-            <marker date="1501997884413" expanded="true" signature="1838:1976" ph="INSERT INTO tbl_html_text... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/readme.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/parser.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#14#0" expanded="true" />
-            <element signature="e#1358#1662#0" expanded="false" />
-            <marker date="1502317256034" expanded="true" signature="2094:2129" ph="SELECT hash_... tbl_property_ad" />
-            <marker date="1502317256034" expanded="true" signature="2469:2504" ph="SELECT * FRO... tbl_html_text" />
-            <marker date="1502317256034" expanded="true" signature="7605:8521" ph="CREATE TABLE... IF" />
-            <marker date="1502317256034" expanded="true" signature="8664:8808" ph="INSERT INTO tbl_property_ad... " />
-            <marker date="1502317256034" expanded="true" signature="8664:8809" ph="INSERT INTO tbl_property_ad... " />
-            <marker date="1502317256034" expanded="true" signature="8664:9064" ph="INSERT INTO tbl_property_ad... " />
-            <marker date="1502317256034" expanded="true" signature="9480:9711" ph="UPDATE tbl_p... " />
-            <marker date="1502317256034" expanded="true" signature="9480:9878" ph="UPDATE tbl_p... " />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1208,12 +1181,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/test_scraper.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="756">
+          <caret line="31" column="27" lean-forward="false" selection-start-line="31" selection-start-column="27" selection-end-line="31" selection-end-column="27" />
+          <folding>
+            <marker date="1500552972526" expanded="true" signature="306:340" ph="DROP TABLE i... " />
+            <marker date="1500552972526" expanded="true" signature="687:741" ph="SELECT hash_... tbl_html_text" />
+            <marker date="1500552972526" expanded="true" signature="950:1002" ph="UPDATE tbl_h... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/test/test_update_lat.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="494">
-          <caret line="60" column="24" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="93" selection-end-column="0" />
+        <state relative-caret-position="186">
+          <caret line="75" column="0" lean-forward="true" selection-start-line="75" selection-start-column="0" selection-end-line="75" selection-end-column="0" />
           <folding>
-            <marker date="1502626618808" expanded="true" signature="2325:2376" ph="select price... tbl_property_ad" />
+            <marker date="1502626781781" expanded="true" signature="2325:2376" ph="select price... tbl_property_ad" />
           </folding>
         </state>
       </provider>
@@ -1230,24 +1215,46 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test_scraper.py">
+    <entry file="file://$PROJECT_DIR$/price_parser.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="338">
-          <caret line="25" column="18" lean-forward="false" selection-start-line="25" selection-start-column="18" selection-end-line="25" selection-end-column="18" />
+        <state relative-caret-position="186">
+          <caret line="76" column="26" lean-forward="true" selection-start-line="76" selection-start-column="26" selection-end-line="76" selection-end-column="26" />
           <folding>
-            <marker date="1500552972526" expanded="true" signature="306:340" ph="DROP TABLE i... " />
-            <marker date="1500552972526" expanded="true" signature="687:741" ph="SELECT hash_... tbl_html_text" />
-            <marker date="1500552972526" expanded="true" signature="950:1002" ph="UPDATE tbl_h... " />
+            <marker date="1502626909515" expanded="true" signature="2325:2376" ph="select price... tbl_property_ad" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/price_parser.py">
+    <entry file="file://$PROJECT_DIR$/scraper.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="130">
-          <caret line="70" column="13" lean-forward="true" selection-start-line="70" selection-start-column="13" selection-end-line="70" selection-end-column="13" />
+        <state relative-caret-position="28">
+          <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
           <folding>
-            <marker date="1502626639947" expanded="true" signature="2325:2376" ph="select price... tbl_property_ad" />
+            <element signature="e#16#31#0" expanded="true" />
+            <element signature="e#582#1104#0" expanded="false" />
+            <element signature="e#1147#1204#0" expanded="false" />
+            <marker date="1501997884413" expanded="true" signature="678:1076" ph="create table... tbl_html_text" />
+            <marker date="1501997884413" expanded="true" signature="1446:1497" ph="SELECT hash_... tbl_html_text" />
+            <marker date="1501997884413" expanded="true" signature="1633:1694" ph="UPDATE tbl_h... " />
+            <marker date="1501997884413" expanded="true" signature="1838:1976" ph="INSERT INTO tbl_html_text... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/parser.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7728">
+          <caret line="276" column="57" lean-forward="true" selection-start-line="276" selection-start-column="57" selection-end-line="276" selection-end-column="57" />
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
+            <marker date="1502627216110" expanded="true" signature="1718:1753" ph="SELECT hash_... tbl_property_ad" />
+            <marker date="1502627216110" expanded="true" signature="2093:2128" ph="SELECT * FRO... tbl_html_text" />
+            <marker date="1502627216110" expanded="true" signature="7278:8194" ph="CREATE TABLE... IF" />
+            <marker date="1502627216110" expanded="true" signature="8337:8481" ph="INSERT INTO tbl_property_ad... " />
+            <marker date="1502627216110" expanded="true" signature="8337:8482" ph="INSERT INTO tbl_property_ad... " />
+            <marker date="1502627216110" expanded="true" signature="8337:8747" ph="INSERT INTO tbl_property_ad... " />
+            <marker date="1502627216110" expanded="true" signature="9175:9415" ph="UPDATE tbl_p... " />
+            <marker date="1502627216110" expanded="true" signature="9175:9582" ph="UPDATE tbl_p... " />
           </folding>
         </state>
       </provider>

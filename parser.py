@@ -1,29 +1,11 @@
 import sqlite3
-import re
 import time
 
 from bs4 import BeautifulSoup
 # from geopy.geocoders import Nominatim as Geo
 
 from scraper import BaseScraper
-
-
-def recognize_price_text(price_text):
-    pattern = re.compile(r"\$\s?[\d,]+")
-    match = pattern.search(price_text)
-    # cat 0: no digit at all
-    if not match:
-        print "cat 0:", price_text
-    # cat 1: single number
-    elif len(match) == 1:
-        print "cat 1:", price_text
-    # cat 2: two numbers
-    elif len(match) == 2:
-        print "cat 2:", price_text
-    else:
-        print "mismatch:", price_text
-
-    pass
+from price_parser import parse_price_text
 
 
 class Parser(object):
@@ -49,6 +31,7 @@ class Parser(object):
         self.create_date = ""
         self.last_seen_date = ""
         self.raw_ad_text = ""
+        self.price = None
 
         self._tgt_db_conn = sqlite3.connect(self.tgt_db)
         self.cur = self._tgt_db_conn.cursor()
@@ -188,6 +171,7 @@ class Parser(object):
 
         # get price text
         self.price_text = ""
+        self.price = None
         price_text = article.find("p", class_="priceText")
         if not price_text:
             price_text = article.find("p", class_="contactAgent")
@@ -196,7 +180,7 @@ class Parser(object):
 
         if price_text:
             self.price_text = price_text.get_text()
-            # print self.price_text
+            self.price = parse_price_text(self.price_text)
 
         # todo li, class='badge openTime'
         # s = article.find("li", class_="badge openTime")
@@ -275,26 +259,26 @@ class Parser(object):
         try:
             cur.execute("INSERT INTO tbl_property_ad "
                         "(hash_id, address, type, subtype,"
-                        " state, postcode, price_text, "
+                        " state, postcode, price_text, price, "
                         "`room.bed`, `room.bath`, `room.car`, "
                         "`raw_list_text`, `ad_url`,"
                         " `created_date`, `last_seen_date`) "
-                        "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                        "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
                         (self.hash_id, self.address, self.property_type, self.sub_type,
-                         self.state, self.postcode, self.price_text,
+                         self.state, self.postcode, self.price_text, self.price,
                          self.room_bed, self.room_bath, self.room_car,
                          self.raw_ad_text, self.ad_url,
                          self.create_date, self.last_seen_date))
         except sqlite3.IntegrityError:
             cur.execute("UPDATE tbl_property_ad SET "
                         "address = ?, type = ?, subtype =?, "
-                        "state = ?, postcode =?, price_text = ?, "
+                        "state = ?, postcode =?, price_text = ?, price=?, "
                         "`room.bed` = ?, `room.bath` = ?, `room.car` = ?, "
                         "`raw_list_text`=?, `ad_url`=?, "
                         "`created_date`=?, `last_seen_date`=? "
                         "WHERE hash_id = ?",
                         (self.address, self.property_type, self.sub_type,
-                         self.state, self.postcode, self.price_text,
+                         self.state, self.postcode, self.price_text, self.price,
                          self.room_bed, self.room_bath, self.room_car,
                          self.raw_ad_text, self.ad_url,
                          self.create_date, self.last_seen_date,

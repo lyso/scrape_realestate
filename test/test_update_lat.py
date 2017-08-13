@@ -84,10 +84,9 @@ if __name__ == "__main__":
 
         while line:
             price_text = line[0]
-            price = rt(price_text)
-            if not isinstance(price, float):
-                if "No Match" not in price:
-                    print price, price_text
+            price = parse_price_text(price_text)
+            if isinstance(price, float):
+                print price, price_text
             line = cur.fetchone()
         pass
 
