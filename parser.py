@@ -32,6 +32,8 @@ class Parser(object):
         self.last_seen_date = ""
         self.raw_ad_text = ""
         self.price = None
+        self.agent_name = ""
+        self.agent_company = ""
 
         self._tgt_db_conn = sqlite3.connect(self.tgt_db)
         self.cur = self._tgt_db_conn.cursor()
