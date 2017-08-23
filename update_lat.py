@@ -63,9 +63,9 @@ def update_lat(max_row):
         cur = conn.cursor()
         cur_update = conn.cursor()
         cur.execute("SELECT address, id, state, postcode FROM tbl_property_ad "
-                    "WHERE state = 'NSW' AND type = 'residential'")
-                    # "WHERE lat is NULL and state = 'NSW' AND type = 'residential' LIMIT ?",
-                    # (max_row,))
+                    # "WHERE state = 'NSW' AND type = 'residential'")
+                    "WHERE lat is NULL and state = 'NSW' AND (type = 'residential' or type = 'house land package') LIMIT ?",
+                    (max_row,))
         # rs = cur.fetchall()
         # it = iter(rs)
         # property_ = it.next()

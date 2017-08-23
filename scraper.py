@@ -1,9 +1,10 @@
 # coding:utf-8
 
-import requests
-import sqlite3
 import datetime
+import sqlite3
 import time
+
+import requests
 from bs4 import BeautifulSoup, element
 
 
@@ -85,23 +86,24 @@ if __name__ == "__main__":
             postcode = line.split(",")[0]
             if postcode.isdigit() and (postcode not in postcodes):
                 postcodes.append(postcode)
-    with sqlite3.connect(scraper.db) as conn:
-        cur = conn.cursor()
-        cur.execute("SELECT DISTINCT url FROM tbl_html_text "
-                    "WHERE url like '%list-1?includeSurrounding=false' "
-                    "AND last_seen_date > '" + str(datetime.datetime.now() - datetime.timedelta(hours=5)) + "'")
 
-        scraped_postcode = set()
-        r = cur.fetchone()
-
-        while r:
-            postcode = r[0]
-            postcode = postcode.split("in-")[1]
-            postcode = postcode.split("/list-1")[0]
-            scraped_postcode.add(postcode)
-            r = cur.fetchone()
-        tac = time.time()
-        print "(" + str(tac-tic) + " seconds)"
+    scraped_postcode = set()
+    # with sqlite3.connect(scraper.db) as conn:
+    #     cur = conn.cursor()
+    #     cur.execute("SELECT DISTINCT url FROM tbl_html_text "
+    #                 "WHERE url like '%list-1?includeSurrounding=false' "
+    #                 "AND last_seen_date > '" + str(datetime.datetime.now() - datetime.timedelta(hours=5)) + "'")
+    #
+    #     r = cur.fetchone()
+    #
+    #     while r:
+    #         postcode = r[0]
+    #         postcode = postcode.split("in-")[1]
+    #         postcode = postcode.split("/list-1")[0]
+    #         scraped_postcode.add(postcode)
+    #         r = cur.fetchone()
+    #     tac = time.time()
+    #     print "(" + str(tac-tic) + " seconds)"
 
     # max_pn = 0
     # for pn in range(len(postcodes)):
