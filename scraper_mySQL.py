@@ -3,18 +3,15 @@
 from __future__ import print_function
 
 import requests
-import mysql.connector
+from MySQL_connector import db_connector
 import datetime
 import time
 from bs4 import BeautifulSoup, element
 
-
-def db_connector():
-    cnx = mysql.connector.connect(user='lyso',
-                                  password='lyskey',
-                                  host="localhost",
-                                  database='realestate_scraper')
-    return cnx
+#
+# def this_db_connector():
+#     return db_connector('realestate_scraper')
+# db_connector = this_db_connector
 
 sql_create_tbl_html_text = "create table if not exists tbl_html_text(" \
                           "hash_id INT NOT NULL, " \
@@ -30,21 +27,24 @@ sql_create_tbl_scrap_log = "create table if not exists tbl_scrap_log(" \
                            "note VARCHAR(255)," \
                            "timestamp TIMESTAMP NOT NULL DEFAULT current_timestamp);"
 
+
 class BaseScraper(object):
+    db = 'realestate_scraper'
+
     def __init__(self):
         self.domain = "www.realestate.com.au"
         self.url_template = "http://www.realestate.com.au/buy/in-%s/list-%s?includeSurrounding=false"
         self.page_num = 1
         self.postcode = 2077
         self.soup = None
-        self._conn = db_connector()
+        self._conn = db_connector(self.db)
         self._cur = self._conn.cursor()
         self.write_queue_len = 0
         self.scrap_log = None
 
     @staticmethod
     def test_db():
-        conn = db_connector()
+        conn = db_connector(BaseScraper.db)
         cur = conn.cursor()
         cur.execute(sql_create_tbl_html_text)
         cur.execute(sql_create_tbl_scrap_log)
