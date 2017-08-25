@@ -1,5 +1,5 @@
-import sqlite3
 import time
+import zlib
 
 from bs4 import BeautifulSoup
 # from geopy.geocoders import Nominatim as Geo
@@ -13,7 +13,7 @@ db = 'realestate_db'
 
 
 class Parser(object):
-    scr_db = 'realestate_scraper'
+    scr_db = 'scraper_dumps'
     tgt_db = 'realestate_db'
 
     def __init__(self):
@@ -95,7 +95,7 @@ class Parser(object):
                     # get address only for the first version
                     # if rs['hash_id'] in parsed_hash_id:
                     #     continue
-                    self.html = rs["html_text"]
+                    self.html = zlib.decompress(str(rs["html_text"])).decode("utf-8")
                     self.hash_id = rs['hash_id']
                     self.create_date = rs["create_date"]
                     self.last_seen_date = rs["last_seen_date"]
